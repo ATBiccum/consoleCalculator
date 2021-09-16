@@ -93,6 +93,10 @@ namespace consoleCalculator
                 Console.WriteLine("This will result in a mathematical error! Try again.");
                 return 0;
             }
+            catch (Exception e)
+            {
+                Console.WriteLine("Oh no! An exception occurred trying to do the math.\n - Details: " + e.Message);
+            }
             return answer;
             
         }
@@ -104,6 +108,10 @@ namespace consoleCalculator
             {
                 Console.WriteLine("This will result in a mathematical error! Try again.");
                 return 0;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Oh no! An exception occurred trying to do the math.\n - Details: " + e.Message);
             }
             return answer;
         }
@@ -117,6 +125,10 @@ namespace consoleCalculator
                 Console.WriteLine("This will result in a mathematical error! Try again.");
                 return 0;
             }
+            catch (Exception e)
+            {
+                Console.WriteLine("Oh no! An exception occurred trying to do the math.\n - Details: " + e.Message);
+            }
             return answer;
         }
         public static double doDivision(double input1, double input2)
@@ -127,6 +139,10 @@ namespace consoleCalculator
             {
                 Console.WriteLine("This will result in a mathematical error! Try again.");
                 return 0;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Oh no! An exception occurred trying to do the math.\n - Details: " + e.Message);
             }
             return answer;
         }
