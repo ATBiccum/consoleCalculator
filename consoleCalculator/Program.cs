@@ -12,6 +12,7 @@
 * Program will debug by checking initial characters, if dividing by zero, any invalid numbers. 
 */
 using System;
+using calculatorLibrary;
 
 namespace consoleCalculator
 {
@@ -20,8 +21,8 @@ namespace consoleCalculator
         static void Main(string[] args)
         {
             bool endApp = false;                                            //Bool value to determine if we are running the program or not
-
-            while(!endApp)
+            Calculator calculator = new Calculator();
+            while (!endApp)
             {
                 bool restartLoop = false;
 
@@ -34,6 +35,7 @@ namespace consoleCalculator
                 string operation = Console.ReadLine();                      //Read what operation user wishes to do save under operation variable
 
                 //Check if user entered a desired character
+                //THIS WORKS DO NOT CHANGE 
                 string[] operators = new string[4];                         //Fill a string with desired characters          
                 operators[0] = "a";
                 operators[1] = "s";
@@ -41,7 +43,11 @@ namespace consoleCalculator
                 operators[3] = "d";
                 for (int i = 0; i < 4; i++)
                 {
-                    if (operation != operators[i])                          //Iterate over the 4 characters if it matches then continue to rest of program
+                    if (operators[i] == operation)                          //Iterate over the 4 characters if it matches then continue to rest of program
+                    {
+                        break;
+                    }
+                    else
                     {
                         restartLoop = true;                                 //If it doesn't match we will restart the loop
                         i = 5;
@@ -52,6 +58,8 @@ namespace consoleCalculator
                 {
                     continue;
                 }
+                //DO NOT CHANGE ^^^
+
 
                 //Input1 debugging
                 Console.WriteLine("Please enter your frist value: ");       //Grab first value, can be anything saves it under dirty variable
@@ -83,7 +91,7 @@ namespace consoleCalculator
                 switch (operation)
                 {
                     case "a":
-                        double answer1 = Calculator.doAddition(input1, input2); //If user selected a, calls addition function of calculator class
+                        double answer1 = calculator.doAddition(input1, input2); //If user selected a, calls addition function of calculator class
                         try
                         {
                             if (double.IsNaN(answer1))                          //Check if answer is a invalid character or not
@@ -98,7 +106,7 @@ namespace consoleCalculator
                         }
                         break;
                     case "s":
-                        double answer2 = Calculator.doSubtraction(input1, input2);//If user selected s, calls subtraction function of calculator class
+                        double answer2 = calculator.doSubtraction(input1, input2);//If user selected s, calls subtraction function of calculator class
                         try
                         {
                             if (double.IsNaN(answer2))
@@ -113,7 +121,7 @@ namespace consoleCalculator
                         }
                         break;
                     case "m":
-                        double answer3 = Calculator.doMultiplication(input1, input2);//If user selected m, calls multiplication function of calculator class
+                        double answer3 = calculator.doMultiplication(input1, input2);//If user selected m, calls multiplication function of calculator class
                         try
                         {
                             if (double.IsNaN(answer3))
@@ -128,7 +136,7 @@ namespace consoleCalculator
                         }
                         break;
                     case "d":
-                        double answer4 = Calculator.doDivision(input1, input2);//If user selected d, called division function of calculator class
+                        double answer4 = calculator.doDivision(input1, input2);//If user selected d, called division function of calculator class
                         try
                         {
                             if (double.IsNaN(answer4))
@@ -148,36 +156,5 @@ namespace consoleCalculator
             }
             return;
         }
-    }
-    class Calculator
-    {
-        public static double doAddition(double input1, double input2) //Addition function
-        {
-            double answer = double.NaN;
-            answer = input1 + input2;
-            return answer;
-            
-        }
-        public static double doSubtraction(double input1, double input2) //Subtraction function
-        {
-            double answer = double.NaN;
-            answer = input1 - input2;
-            return answer;
-        }
-
-        public static double doMultiplication(double input1, double input2) //Multiplication function
-        {
-            double answer = double.NaN;
-            answer = input1 * input2;
-            return answer;
-        }
-        public static double doDivision(double input1, double input2) //Divison function
-        {
-            double answer = double.NaN;
-            answer = input1 / input2;
-            return answer;
-        }
-
-
     }
 }
