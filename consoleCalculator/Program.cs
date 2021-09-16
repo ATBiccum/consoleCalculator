@@ -30,16 +30,34 @@ namespace consoleCalculator
                 Console.WriteLine("d - Division");
                 string operation = Console.ReadLine();
                 
-                Console.WriteLine("Please enter your frist value: ");
-                double input1 = Convert.ToDouble(Console.ReadLine());
-                Console.WriteLine("Please enter your second value: ");
-                double input2 = Convert.ToDouble(Console.ReadLine());
-                while (input2 == 0)
+
+                //Input1 debugging.
+                Console.WriteLine("Please enter your frist value: ");       //Grab first value, can be anything
+                string dirtyInput1 = Console.ReadLine();
+
+                double input1 = 0;
+                while(!double.TryParse(dirtyInput1, out input1))            //Try parse convers string to a double
+                {                                                           //If a unvalid character will trigger warning
+                    Console.Write("Not a valid input, please try again.");
+                    dirtyInput1 = Console.ReadLine();
+                }
+
+
+                //Input2 debugging
+                Console.WriteLine("Please enter your second value: ");      //Grab first value
+                string dirtyInput2 = Console.ReadLine();
+
+                double input2 = 0;                          
+                while (!double.TryParse(dirtyInput2, out input2))           //Will check if unvalid value and return warning
+                {
+                    Console.Write("Not a valid input, please try again.");
+                    dirtyInput2 = Console.ReadLine();
+                }
+                while (input2 == 0)                                         //Check if we are trying to divide by zero
                 {
                     Console.WriteLine("Cannot divide by zero! Enter second number: ");
                     input2 = Convert.ToDouble(Console.ReadLine());
                 }
-
 
                 switch(operation)
                 {
