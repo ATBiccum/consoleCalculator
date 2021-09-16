@@ -6,10 +6,10 @@
 *  This program is meant to be a basic console calculator.
 *  It can perform addition, subtraction, multiplication, and division. 
 *  The program will ask the user what kind of operation they would like to do.
-*  Then ask for how many inputs. 
-*  Then input all inputs.
+*  Then input 2 inputs.
 *  Then produce a result.
 * 
+* Program will debug by checking initial characters, if dividing by zero, any invalid numbers. 
 */
 using System;
 
@@ -142,11 +142,8 @@ namespace consoleCalculator
                             Console.WriteLine("Oh no! An exception occurred trying to do the math.\n - Details: " + e.Message);
                         }
                         break;
-                    default:
-                        Console.WriteLine("Unknown value, please enter a, s, m, or d.");
-                        break;
                 }
-                Console.WriteLine("Press 'n' to close the app or any other key to continue.\n");
+                Console.WriteLine("Press 'n' to close the app or any other key to continue.\n"); //Restarts the program if user enters any character other than n
                 if (Console.ReadLine() == "n") endApp = true;
             }
             return;
@@ -154,27 +151,27 @@ namespace consoleCalculator
     }
     class Calculator
     {
-        public static double doAddition(double input1, double input2)
+        public static double doAddition(double input1, double input2) //Addition function
         {
             double answer = double.NaN;
             answer = input1 + input2;
             return answer;
             
         }
-        public static double doSubtraction(double input1, double input2)
+        public static double doSubtraction(double input1, double input2) //Subtraction function
         {
             double answer = double.NaN;
             answer = input1 - input2;
             return answer;
         }
 
-        public static double doMultiplication(double input1, double input2)
+        public static double doMultiplication(double input1, double input2) //Multiplication function
         {
             double answer = double.NaN;
             answer = input1 * input2;
             return answer;
         }
-        public static double doDivision(double input1, double input2)
+        public static double doDivision(double input1, double input2) //Divison function
         {
             double answer = double.NaN;
             answer = input1 / input2;
