@@ -30,12 +30,11 @@ namespace consoleCalculator
             {
                 case "a":
                     Console.WriteLine("Please enter your first number:");
-                    var input1 = Convert.ToInt32(Console.ReadLine());
+                    int input1 = Convert.ToInt32(Console.ReadLine());
                     Console.WriteLine("Please enter your second number:");
-                    var input2 = Console.ReadLine();
+                    int input2 = Convert.ToInt32(Console.ReadLine());
                     int answer = input1 + input2;
                     Console.WriteLine($"Your Result: {answer}");    
-
                     break;
             }
         }
