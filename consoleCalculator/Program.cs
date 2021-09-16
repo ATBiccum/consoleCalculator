@@ -19,7 +19,7 @@ namespace consoleCalculator
     {
         static void Main(string[] args)
         {
-            bool endApp = false; //Bool value to determine if we are running the program or not
+            bool endApp = false;                                            //Bool value to determine if we are running the program or not
 
             while(!endApp)
             {
@@ -28,56 +28,55 @@ namespace consoleCalculator
                 Console.WriteLine("s - Subtraction");
                 Console.WriteLine("m - Multiplication");
                 Console.WriteLine("d - Division");
-                string operation = Console.ReadLine();
+
+                string operation = Console.ReadLine();                      //Read what operation user wishes to do save under operation variable
                 
 
-                //Input1 debugging.
-                Console.WriteLine("Please enter your frist value: ");       //Grab first value, can be anything
+                //Input1 debugging
+                Console.WriteLine("Please enter your frist value: ");       //Grab first value, can be anything saves it under dirty variable
                 string dirtyInput1 = Console.ReadLine();
 
                 double input1 = 0;
-                while(!double.TryParse(dirtyInput1, out input1))            //Try parse convers string to a double
+                while(!double.TryParse(dirtyInput1, out input1))            //Try parse converts string to a double and saves under clean new name
                 {                                                           //If a unvalid character will trigger warning
-                    Console.Write("Not a valid input, please try again.");
+                    Console.Write("Not a valid input, please try again.\n");
                     dirtyInput1 = Console.ReadLine();
                 }
 
-
                 //Input2 debugging
-                Console.WriteLine("Please enter your second value: ");      //Grab first value
-                string dirtyInput2 = Console.ReadLine();
+                Console.WriteLine("Please enter your second value: ");      
+                string dirtyInput2 = Console.ReadLine();                    //Grab first value, can be anything
 
                 double input2 = 0;                          
                 while (!double.TryParse(dirtyInput2, out input2))           //Will check if unvalid value and return warning
                 {
-                    Console.Write("Not a valid input, please try again.");
+                    Console.Write("Not a valid input, please try again.\n");
                     dirtyInput2 = Console.ReadLine();
                 }
                 while (input2 == 0)                                         //Check if we are trying to divide by zero
-                {
+                {                                                           //Returns an error if trying to divide by zero
                     Console.WriteLine("Cannot divide by zero! Enter second number: ");
                     input2 = Convert.ToDouble(Console.ReadLine());
                 }
-
+                //Directs to proper calculation based on operation selected
                 switch(operation)
                 {
                     case "a":
-                        double answer1 = Calculator.doAddition(input1, input2);
-                        Console.WriteLine($"You answer is: {answer1}");
+                        double answer1 = Calculator.doAddition(input1, input2); //If user selected a, calls addition function of calculator class
+                        Console.WriteLine($"You answer is: {answer1}");         //Returns the answer from the function
                         break;
                     case "s":
-                        double answer2 = Calculator.doSubtraction(input1, input2);
-                        Console.WriteLine($"You answer is: {answer2}");
+                        double answer2 = Calculator.doSubtraction(input1, input2);//If user selected s, calls subtraction function of calculator class
+                        Console.WriteLine($"You answer is: {answer2}");         //Returns the answer from function
                         break;
                     case "m":
-                        double answer3 = Calculator.doMultiplication(input1, input2);
-                        Console.WriteLine($"You answer is: {answer3}");
+                        double answer3 = Calculator.doMultiplication(input1, input2);//If user selected m, calls multiplication function of calculator class
+                        Console.WriteLine($"You answer is: {answer3}");         //Returns the answer from the function
                         break;
                     case "d":
-                        double answer4 = Calculator.doDivision(input1, input2);
-                        Console.WriteLine($"You answer is: {answer4}");
+                        double answer4 = Calculator.doDivision(input1, input2);//If user selected d, called division function of calculator class
+                        Console.WriteLine($"You answer is: {answer4}");         //Returns the answer from the function
                         break;
-
                 }
             }
             return;
@@ -89,12 +88,23 @@ namespace consoleCalculator
         {
             double answer = double.NaN;
             answer = input1 + input2;
+            if (double.IsNaN(answer))
+            {
+                Console.WriteLine("This will result in a mathematical error! Try again.");
+                return 0;
+            }
             return answer;
+            
         }
         public static double doSubtraction(double input1, double input2)
         {
             double answer = double.NaN;
             answer = input1 - input2;
+            if (double.IsNaN(answer))
+            {
+                Console.WriteLine("This will result in a mathematical error! Try again.");
+                return 0;
+            }
             return answer;
         }
 
@@ -102,12 +112,22 @@ namespace consoleCalculator
         {
             double answer = double.NaN;
             answer = input1 * input2;
+            if (double.IsNaN(answer))
+            {
+                Console.WriteLine("This will result in a mathematical error! Try again.");
+                return 0;
+            }
             return answer;
         }
         public static double doDivision(double input1, double input2)
         {
             double answer = double.NaN;
             answer = input1 / input2;
+            if (double.IsNaN(answer))
+            {
+                Console.WriteLine("This will result in a mathematical error! Try again.");
+                return 0;
+            }
             return answer;
         }
 
