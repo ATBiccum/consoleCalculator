@@ -32,8 +32,12 @@ namespace consoleCalculator
                 switch(Console.ReadLine())
                 {
                     case "a":
-                        
-                        Calculator.doAddition(addInput1, addInput2);
+                        Console.WriteLine("Please enter your frist value: ");
+                        double addInput1 = Convert.ToDouble(Console.ReadLine());
+                        Console.WriteLine("Please enter your second value: ");
+                        double addInput2 = Convert.ToDouble(Console.ReadLine());
+                        double answer = Calculator.doAddition(addInput1, addInput2);
+                        Console.WriteLine($"You answer is: {answer}");
                         break;
                     case "s":
 
