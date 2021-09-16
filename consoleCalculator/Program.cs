@@ -30,8 +30,19 @@ namespace consoleCalculator
                 Console.WriteLine("d - Division");
 
                 string operation = Console.ReadLine();                      //Read what operation user wishes to do save under operation variable
-                
-
+                string[] operators = new string[4];
+                operators[0] = "a";
+                operators[1] = "s";
+                operators[2] = "m";
+                operators[3] = "d";
+                for (int i = 0; i < 4; i++)
+                { 
+                    if (operation != operators[i])
+                    {
+                        Console.WriteLine("Please enter a valid character! a, s, m, d");
+                        return;
+                    }
+                }
                 //Input1 debugging
                 Console.WriteLine("Please enter your frist value: ");       //Grab first value, can be anything saves it under dirty variable
                 string dirtyInput1 = Console.ReadLine();
@@ -121,6 +132,9 @@ namespace consoleCalculator
                             Console.WriteLine("Oh no! An exception occurred trying to do the math.\n - Details: " + e.Message);
                         }
                         break;
+                    default:
+                        Console.WriteLine("Unknown value, please enter a, s, m, or d.");
+                        break;
                 }
                 Console.WriteLine("Press 'n' to close the app or any other key to continue.\n");
                 if (Console.ReadLine() == "n") endApp = true;
@@ -141,7 +155,6 @@ namespace consoleCalculator
         {
             double answer = double.NaN;
             answer = input1 - input2;
-            if (double.IsNaN(answer))
             return answer;
         }
 
