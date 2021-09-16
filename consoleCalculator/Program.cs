@@ -23,6 +23,8 @@ namespace consoleCalculator
 
             while(!endApp)
             {
+                bool restartLoop = false;
+
                 Console.WriteLine("Welcome to Console Calculator! What kind of operation do you with to perform?");
                 Console.WriteLine("a - Addition");
                 Console.WriteLine("s - Subtraction");
@@ -30,19 +32,27 @@ namespace consoleCalculator
                 Console.WriteLine("d - Division");
 
                 string operation = Console.ReadLine();                      //Read what operation user wishes to do save under operation variable
-                string[] operators = new string[4];
+
+                //Check if user entered a desired character
+                string[] operators = new string[4];                         //Fill a string with desired characters          
                 operators[0] = "a";
                 operators[1] = "s";
                 operators[2] = "m";
                 operators[3] = "d";
                 for (int i = 0; i < 4; i++)
-                { 
-                    if (operation != operators[i])
+                {
+                    if (operation != operators[i])                          //Iterate over the 4 characters if it matches then continue to rest of program
                     {
-                        Console.WriteLine("Please enter a valid character! a, s, m, d");
-                        return;
+                        restartLoop = true;                                 //If it doesn't match we will restart the loop
+                        i = 5;
+                        Console.WriteLine("Please enter a valid character! a, s, m, d");//Display error message as well
                     }
                 }
+                if (restartLoop == true)                                    //Uses continue to restart the loop is bool restartLoop was triggered earlier
+                {
+                    continue;
+                }
+
                 //Input1 debugging
                 Console.WriteLine("Please enter your frist value: ");       //Grab first value, can be anything saves it under dirty variable
                 string dirtyInput1 = Console.ReadLine();
@@ -76,7 +86,7 @@ namespace consoleCalculator
                         double answer1 = Calculator.doAddition(input1, input2); //If user selected a, calls addition function of calculator class
                         try
                         {
-                            if (double.IsNaN(answer1))
+                            if (double.IsNaN(answer1))                          //Check if answer is a invalid character or not
                             {
                                 Console.WriteLine("This will result in a mathematical error! Try again.");
                             }
