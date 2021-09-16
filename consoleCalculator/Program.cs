@@ -59,23 +59,67 @@ namespace consoleCalculator
                     input2 = Convert.ToDouble(Console.ReadLine());
                 }
                 //Directs to proper calculation based on operation selected
-                switch(operation)
+                switch (operation)
                 {
                     case "a":
                         double answer1 = Calculator.doAddition(input1, input2); //If user selected a, calls addition function of calculator class
-                        Console.WriteLine($"You answer is: {answer1}");         //Returns the answer from the function
+                        try
+                        {
+                            if (double.IsNaN(answer1))
+                            {
+                                Console.WriteLine("This will result in a mathematical error! Try again.");
+                            }
+                            else Console.WriteLine($"You answer is: {answer1}"); //Returns the answer from the function
+                        }
+                        catch (Exception e)
+                        {
+                            Console.WriteLine("Oh no! An exception occurred trying to do the math.\n - Details: " + e.Message);
+                        }
                         break;
                     case "s":
                         double answer2 = Calculator.doSubtraction(input1, input2);//If user selected s, calls subtraction function of calculator class
-                        Console.WriteLine($"You answer is: {answer2}");         //Returns the answer from function
+                        try
+                        {
+                            if (double.IsNaN(answer2))
+                            {
+                                Console.WriteLine("This will result in a mathematical error! Try again.");
+                            }
+                            else Console.WriteLine($"You answer is: {answer2}"); //Returns the answer from the function
+                        }
+                        catch (Exception e)
+                        {
+                            Console.WriteLine("Oh no! An exception occurred trying to do the math.\n - Details: " + e.Message);
+                        }
                         break;
                     case "m":
                         double answer3 = Calculator.doMultiplication(input1, input2);//If user selected m, calls multiplication function of calculator class
-                        Console.WriteLine($"You answer is: {answer3}");         //Returns the answer from the function
+                        try
+                        {
+                            if (double.IsNaN(answer3))
+                            {
+                                Console.WriteLine("This will result in a mathematical error! Try again.");
+                            }
+                            else Console.WriteLine($"You answer is: {answer3}"); //Returns the answer from the function
+                        }
+                        catch (Exception e)
+                        {
+                            Console.WriteLine("Oh no! An exception occurred trying to do the math.\n - Details: " + e.Message);
+                        }
                         break;
                     case "d":
                         double answer4 = Calculator.doDivision(input1, input2);//If user selected d, called division function of calculator class
-                        Console.WriteLine($"You answer is: {answer4}");         //Returns the answer from the function
+                        try
+                        {
+                            if (double.IsNaN(answer4))
+                            {
+                                Console.WriteLine("This will result in a mathematical error! Try again.");
+                            }
+                            else Console.WriteLine($"You answer is: {answer4}"); //Returns the answer from the function
+                        }
+                        catch (Exception e)
+                        {
+                            Console.WriteLine("Oh no! An exception occurred trying to do the math.\n - Details: " + e.Message);
+                        }
                         break;
                 }
             }
@@ -88,15 +132,6 @@ namespace consoleCalculator
         {
             double answer = double.NaN;
             answer = input1 + input2;
-            if (double.IsNaN(answer))
-            {
-                Console.WriteLine("This will result in a mathematical error! Try again.");
-                return 0;
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("Oh no! An exception occurred trying to do the math.\n - Details: " + e.Message);
-            }
             return answer;
             
         }
@@ -105,14 +140,6 @@ namespace consoleCalculator
             double answer = double.NaN;
             answer = input1 - input2;
             if (double.IsNaN(answer))
-            {
-                Console.WriteLine("This will result in a mathematical error! Try again.");
-                return 0;
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("Oh no! An exception occurred trying to do the math.\n - Details: " + e.Message);
-            }
             return answer;
         }
 
@@ -120,30 +147,12 @@ namespace consoleCalculator
         {
             double answer = double.NaN;
             answer = input1 * input2;
-            if (double.IsNaN(answer))
-            {
-                Console.WriteLine("This will result in a mathematical error! Try again.");
-                return 0;
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("Oh no! An exception occurred trying to do the math.\n - Details: " + e.Message);
-            }
             return answer;
         }
         public static double doDivision(double input1, double input2)
         {
             double answer = double.NaN;
             answer = input1 / input2;
-            if (double.IsNaN(answer))
-            {
-                Console.WriteLine("This will result in a mathematical error! Try again.");
-                return 0;
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine("Oh no! An exception occurred trying to do the math.\n - Details: " + e.Message);
-            }
             return answer;
         }
 
