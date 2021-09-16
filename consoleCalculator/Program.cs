@@ -55,10 +55,16 @@ namespace consoleCalculator
                 case "d":
                     Console.WriteLine("Please enter your first number:");
                     var input7 = Convert.ToDouble(Console.ReadLine());
-                    Console.WriteLine("Please enter your second number:");
+                    Console.WriteLine("Please enter your second non-zero number:");
+                    
                     var input8 = Convert.ToDouble(Console.ReadLine());
+                    while(input8 == 0)
+                    {
+                        Console.WriteLine("Cannot divide by zero! Enter second number: ");
+                        input8 = Convert.ToDouble(Console.ReadLine());
+                    }
                     double answer4 = input7 / input8;
-                    Console.WriteLine($"Your Result: {answer4}.2d");
+                    Console.WriteLine($"Your Result: {answer4}");
                     break;
             }
         }
