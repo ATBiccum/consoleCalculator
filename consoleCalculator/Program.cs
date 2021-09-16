@@ -122,6 +122,8 @@ namespace consoleCalculator
                         }
                         break;
                 }
+                Console.WriteLine("Press 'n' to close the app or any other key to continue.\n");
+                if (Console.ReadLine() == "n") endApp = true;
             }
             return;
         }
