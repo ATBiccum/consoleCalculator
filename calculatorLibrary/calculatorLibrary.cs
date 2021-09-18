@@ -1,25 +1,33 @@
 ﻿using System;
 using System.IO;
 using System.Diagnostics;
+using Newtonsoft.Json;
 
 namespace calculatorLibrary
 {
     public class Calculator
-    {    
+    {
+        JsonWriter writer;
+
         public Calculator()
         {
-        StreamWriter logFile = File.CreateText("calculator.log");
-        Trace.Listeners.Add(new TextWriterTraceListener(logFile));
-        Trace.AutoFlush = true;
-        Trace.WriteLine("Starting Calculator Log");
-        Trace.WriteLine(String.Format("Started {0}", System.DateTime.Now.ToString()));
+            StreamWriter logFile = File.CreateText("calculatorlog.json");
+            logFile.AutoFlush = true;
+            writer = new JsonTextWriter(logFile);
+            writer.Formatting = Formatting.Indented;
+            writer.WriteStartObject();
+            writer.WritePropertyName("Operations");
+            writer.WriteStartArray();
         }
 
         public double doAddition(double input1, double input2) //Addition function
         {
             double answer = double.NaN;
             answer = input1 + input2;
-            Trace.WriteLine(String.Format("{0} + {1} = {2}", input1, input2, answer));
+            writer.WriteValue("Add");
+            writer.WritePropertyName("Answer");
+            writer.WriteValue(answer);
+            writer.WriteEndObject();
             return answer;
 
         }
@@ -27,7 +35,10 @@ namespace calculatorLibrary
         {
             double answer = double.NaN;
             answer = input1 - input2;
-            Trace.WriteLine(String.Format("{0} + {1} = {2}", input1, input2, answer));
+            writer.WriteValue("Subtraction");
+            writer.WritePropertyName("Answer");
+            writer.WriteValue(answer);
+            writer.WriteEndObject();
             return answer;
         }
 
@@ -35,15 +46,27 @@ namespace calculatorLibrary
         {
             double answer = double.NaN;
             answer = input1 * input2;
-            Trace.WriteLine(String.Format("{0} + {1} = {2}", input1, input2, answer));
+            writer.WriteValue("Multiplication");
+            writer.WritePropertyName("Answer");
+            writer.WriteValue(answer);
+            writer.WriteEndObject();
             return answer;
         }
         public double doDivision(double input1, double input2) //Divison function
         {
             double answer = double.NaN;
             answer = input1 / input2;
-            Trace.WriteLine(String.Format("{0} + {1} = {2}", input1, input2, answer));
+            writer.WriteValue("Division");
+            writer.WritePropertyName("Answer");
+            writer.WriteValue(answer);
+            writer.WriteEndObject();
             return answer;
+        }
+        public void Finish()
+        {
+            writer.WriteEndArray();
+            writer.WriteEndObject();
+            writer.Close();
         }
     }
 }

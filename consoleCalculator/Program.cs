@@ -154,6 +154,7 @@ namespace consoleCalculator
                 Console.WriteLine("Press 'n' to close the app or any other key to continue.\n"); //Restarts the program if user enters any character other than n
                 if (Console.ReadLine() == "n") endApp = true;
             }
+            calculator.Finish();
             return;
         }
     }
