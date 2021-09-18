@@ -42,21 +42,20 @@ namespace consoleCalculator
                 operators[2] = "m";
                 operators[3] = "d";
 
-                while (count < 4)
+                //Check all operators x 4 if operators matches operation
+                while (count < 4) //While count is between 0 and 4
                 {
-                    if (operation == operators[count])
+                    if (operation == operators[count]) //Check if operation is equal to to a, s, m, d
                     {
-                        count = 4;
+                        count = 4;                     //If it is equal break out of loop 
                     }
-                    else
+                    if (count == 3 && operation != operators[count]) //If operation does not equal we need to check rest of values
                     {
-                        Console.Write("Please enter a valid menu item. Try again.");
+                        Console.Write("Please enter a valid menu item. Try again.\n");
                         restartLoop = true;
                     }
                     count++;
                 }
-
-
                 if (restartLoop == true)                                    //Uses continue to restart the loop is bool restartLoop was triggered earlier
                 {
                     continue;

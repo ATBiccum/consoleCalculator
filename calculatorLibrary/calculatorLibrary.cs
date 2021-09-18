@@ -22,9 +22,15 @@ namespace calculatorLibrary
 
         public double doAddition(double input1, double input2) //Addition function
         {
-            double answer = double.NaN;
+            double answer = double.NaN;            
             answer = input1 + input2;
-            writer.WriteValue("Add");
+            writer.WriteStartObject();
+            writer.WritePropertyName("Operand1");
+            writer.WriteValue(input1);
+            writer.WritePropertyName("Operand2");
+            writer.WriteValue(input2);
+            writer.WritePropertyName("Operation");
+            writer.WriteValue("Addition");
             writer.WritePropertyName("Answer");
             writer.WriteValue(answer);
             writer.WriteEndObject();
@@ -35,6 +41,12 @@ namespace calculatorLibrary
         {
             double answer = double.NaN;
             answer = input1 - input2;
+            writer.WriteStartObject();
+            writer.WritePropertyName("Operand1");
+            writer.WriteValue(input1);
+            writer.WritePropertyName("Operand2");
+            writer.WriteValue(input2);
+            writer.WritePropertyName("Operation");
             writer.WriteValue("Subtraction");
             writer.WritePropertyName("Answer");
             writer.WriteValue(answer);
@@ -46,6 +58,12 @@ namespace calculatorLibrary
         {
             double answer = double.NaN;
             answer = input1 * input2;
+            writer.WriteStartObject();
+            writer.WritePropertyName("Operand1");
+            writer.WriteValue(input1);
+            writer.WritePropertyName("Operand2");
+            writer.WriteValue(input2);
+            writer.WritePropertyName("Operation");
             writer.WriteValue("Multiplication");
             writer.WritePropertyName("Answer");
             writer.WriteValue(answer);
@@ -56,6 +74,12 @@ namespace calculatorLibrary
         {
             double answer = double.NaN;
             answer = input1 / input2;
+            writer.WriteStartObject();
+            writer.WritePropertyName("Operand1");
+            writer.WriteValue(input1);
+            writer.WritePropertyName("Operand2");
+            writer.WriteValue(input2);
+            writer.WritePropertyName("Operation");
             writer.WriteValue("Division");
             writer.WritePropertyName("Answer");
             writer.WriteValue(answer);
