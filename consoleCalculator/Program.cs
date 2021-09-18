@@ -25,6 +25,7 @@ namespace consoleCalculator
             while (!endApp)
             {
                 bool restartLoop = false;
+                int count = 0;
 
                 Console.WriteLine("Welcome to Console Calculator! What kind of operation do you with to perform?");
                 Console.WriteLine("a - Addition");
@@ -35,59 +36,61 @@ namespace consoleCalculator
                 string operation = Console.ReadLine();                      //Read what operation user wishes to do save under operation variable
 
                 //Check if user entered a desired character
-                //THIS WORKS DO NOT CHANGE 
                 string[] operators = new string[4];                         //Fill a string with desired characters          
                 operators[0] = "a";
                 operators[1] = "s";
                 operators[2] = "m";
                 operators[3] = "d";
-                for (int i = 0; i < 4; i++)
+
+                while (count < 4)
                 {
-                    if (operators[i] == operation)                          //Iterate over the 4 characters if it matches then continue to rest of program
+                    if (operation == operators[count])
                     {
-                        break;
+                        count = 4;
                     }
                     else
                     {
-                        restartLoop = true;                                 //If it doesn't match we will restart the loop
-                        i = 5;
-                        Console.WriteLine("Please enter a valid character! a, s, m, d");//Display error message as well
+                        Console.Write("Please enter a valid menu item. Try again.");
+                        restartLoop = true;
                     }
+                    count++;
                 }
+
+
                 if (restartLoop == true)                                    //Uses continue to restart the loop is bool restartLoop was triggered earlier
                 {
                     continue;
                 }
-                //DO NOT CHANGE ^^^
-
 
                 //Input1 debugging
                 Console.WriteLine("Please enter your frist value: ");       //Grab first value, can be anything saves it under dirty variable
                 string dirtyInput1 = Console.ReadLine();
 
                 double input1 = 0;
-                while(!double.TryParse(dirtyInput1, out input1))            //Try parse converts string to a double and saves under clean new name
+                while (!double.TryParse(dirtyInput1, out input1))            //Try parse converts string to a double and saves under clean new name
                 {                                                           //If a unvalid character will trigger warning
                     Console.Write("Not a valid input, please try again.\n");
                     dirtyInput1 = Console.ReadLine();
                 }
 
                 //Input2 debugging
-                Console.WriteLine("Please enter your second value: ");      
+                Console.WriteLine("Please enter your second value: ");
                 string dirtyInput2 = Console.ReadLine();                    //Grab first value, can be anything
 
-                double input2 = 0;                          
+                double input2 = 0;
                 while (!double.TryParse(dirtyInput2, out input2))           //Will check if unvalid value and return warning
                 {
                     Console.Write("Not a valid input, please try again.\n");
                     dirtyInput2 = Console.ReadLine();
                 }
+
                 while (input2 == 0)                                         //Check if we are trying to divide by zero
                 {                                                           //Returns an error if trying to divide by zero
                     Console.WriteLine("Cannot divide by zero! Enter second number: ");
                     input2 = Convert.ToDouble(Console.ReadLine());
                 }
                 //Directs to proper calculation based on operation selected
+
                 switch (operation)
                 {
                     case "a":
@@ -150,12 +153,18 @@ namespace consoleCalculator
                             Console.WriteLine("Oh no! An exception occurred trying to do the math.\n - Details: " + e.Message);
                         }
                         break;
-                }
+                } //End of switch case
+
+                //Check if user would like to restart the program, or while loop
                 Console.WriteLine("Press 'n' to close the app or any other key to continue.\n"); //Restarts the program if user enters any character other than n
                 if (Console.ReadLine() == "n") endApp = true;
             }
-            calculator.Finish();
-            return;
+         calculator.Finish();
+         return;
         }
     }
 }
+
+
+
+
