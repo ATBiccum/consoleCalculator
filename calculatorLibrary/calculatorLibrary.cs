@@ -86,6 +86,22 @@ namespace calculatorLibrary
             writer.WriteEndObject();
             return answer;
         }
+        public double doPower(double input1, double input2) //Power function
+        {
+            double answer = double.NaN;
+            answer = Math.Pow(input1, input2);
+            writer.WriteStartObject();
+            writer.WritePropertyName("Operand1");
+            writer.WriteValue(input1);
+            writer.WritePropertyName("Operand2");
+            writer.WriteValue(input2);
+            writer.WritePropertyName("Operation");
+            writer.WriteValue("Power of");
+            writer.WritePropertyName("Answer");
+            writer.WriteValue(answer);
+            writer.WriteEndObject();
+            return answer;
+        }
         public void Finish()
         {
             writer.WriteEndArray();

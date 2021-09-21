@@ -6,8 +6,9 @@
 *  This program is meant to be a basic console calculator.
 *  It can perform addition, subtraction, multiplication, and division. 
 *  The program will ask the user what kind of operation they would like to do.
-*  Then input 2 inputs.
-*  Then produce a result.
+*  Upon users entry, the program will check if a valid character, then proceed
+*  Once a operation is selected the program will ask for two inputs.
+*  A result is produced for the user.
 * 
 * Program will debug by checking initial characters, if dividing by zero, any invalid numbers. 
 */
@@ -32,24 +33,26 @@ namespace consoleCalculator
                 Console.WriteLine("s - Subtraction");
                 Console.WriteLine("m - Multiplication");
                 Console.WriteLine("d - Division");
+                Console.WriteLine("p - Power");
 
                 string operation = Console.ReadLine();                      //Read what operation user wishes to do save under operation variable
 
                 //Check if user entered a desired character
-                string[] operators = new string[4];                         //Fill a string with desired characters          
+                string[] operators = new string[5];                         //Fill a string with desired characters          
                 operators[0] = "a";
                 operators[1] = "s";
                 operators[2] = "m";
                 operators[3] = "d";
+                operators[4] = "p";
 
                 //Check all operators x 4 if operators matches operation
-                while (count < 4) //While count is between 0 and 4
+                while (count < 5) //While count is between 0 and 4
                 {
                     if (operation == operators[count]) //Check if operation is equal to to a, s, m, d
                     {
-                        count = 4;                     //If it is equal break out of loop 
+                        count = 5;                     //If it is equal break out of loop 
                     }
-                    if (count == 3 && operation != operators[count]) //If operation does not equal we need to check rest of values
+                    if (count == 4 && operation != operators[count]) //If operation does not equal we need to check rest of values
                     {
                         Console.Write("Please enter a valid menu item. Try again.\n");
                         restartLoop = true;
@@ -146,6 +149,21 @@ namespace consoleCalculator
                                 Console.WriteLine("This will result in a mathematical error! Try again.");
                             }
                             else Console.WriteLine($"You answer is: {answer4}"); //Returns the answer from the function
+                        }
+                        catch (Exception e)
+                        {
+                            Console.WriteLine("Oh no! An exception occurred trying to do the math.\n - Details: " + e.Message);
+                        }
+                        break;
+                    case "p":
+                        double answer5 = calculator.doPower(input1, input2);//If user selected d, called division function of calculator class
+                        try
+                        {
+                            if (double.IsNaN(answer5))
+                            {
+                                Console.WriteLine("This will result in a mathematical error! Try again.");
+                            }
+                            else Console.WriteLine($"You answer is: {answer5}"); //Returns the answer from the function
                         }
                         catch (Exception e)
                         {
